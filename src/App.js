@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components'
-import Produtos from './components/Produtos/Produtos'
-import ProdutosCard from './components/Produtos/ProdutosCard'
+import Produtos from './components/produtos/produtos'
+import ProdutosCard from './components/produtos/ProdutosCard'
+import Filtros from './components/Filtros'
+
 const Centralizados = styled.div`
   width: 1200px; 
   height: 100vh;
@@ -9,6 +11,25 @@ const Centralizados = styled.div`
   `
 
 class App extends React.Component  {
+  
+    state = {
+      filtroMin: 100,
+      filtroMax: 1000,
+      filtroNome: 'Produto',
+      carrinho: []
+    }
+  
+    onChangeMinFilter = (event) => {
+      this.setState({filtroMin: event.target.value})
+    }
+  
+    onChangeMaxFilter = (event) => {
+      this.setState({filtroMax: event.target.value})
+    }
+  
+    onChangeNameFilter = (event) => {
+      this.setState({filtroNome: event.target.value})
+    }
 
   render(){
   
@@ -24,6 +45,8 @@ class App extends React.Component  {
      </div>
 
       </Centralizados>
+
+      <Filtros></Filtros>
   </div>
  
   );
