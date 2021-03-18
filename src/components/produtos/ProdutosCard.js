@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import App from '../../App'
+import App from '../..App'
 
 const HeaderProdutos = styled.div`
   display: flex;

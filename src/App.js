@@ -1,8 +1,8 @@
 import React from 'react';
 import { Carrinho } from './components/Carrinho/Carrinho';
-import styled from 'styled-components'
-import ProdutosCard from './components/Produtos/ProdutosCard'
-import Filtros from './components/Filtros'
+import styled from 'styled-components';
+import ProdutosCard from './components/produtos/ProdutosCard';
+import Filtros from './components/produtos/Filtros'
 // const ConteinerCarrinho = styled.div``
 
 // const Carrinho = styled.div``
@@ -39,15 +39,15 @@ const produtos = [
 class App extends React.Component {
 
   state = {
-    filtroMin: 100,
-    filtroMax: 1000,
-    filtroNome: 'Produto',
+    filtroMin: 0,
+    filtroMax: 0,
+    filtroNome: '',
     carrinho: [],
     produtosNoCarrinho: [
       {
         id: 3,
         name: 'Produto 3',
-        preço: 30,
+        preco: 30,
         quantidade: 2
       }
     ]
@@ -65,6 +65,21 @@ class App extends React.Component {
   onChangeNameFilter = (event) => {
     this.setState({filtroNome: event.target.value})
   }
+
+  filtraProdutos = () => {
+    let produtosFiltrados = [...arrayComOsprodutos]
+    
+    produtosFiltrados= produtosFiltrados.filter((produto) => {
+      if (produto.valor < this.state.filtroMin) {
+        return false
+      } return true
+      
+    })
+    return produtosFiltrados
+  }
+    
+    
+  
 
   AdicionaProdutoNoCarrinho = (produtoId) => {
     const produtoNoCarrinho = this.state.produtosNoCarrinho.find(produto => produtoId === produto.id)
@@ -120,11 +135,18 @@ class App extends React.Component {
           />
           <ProdutosCard/>
         </Centralizados>
-        <Filtros/>
+        <Filtros
+          filtroMin={this.state.filtroMin}
+          filtroMax={this.state.filtroMax}
+          filtroNome={this.state.onChangeNameFilter}
+          onChangeMinFilter={this.onChangeMinFilter}
+          onChangeMaxFilter={this.onChangeMaxFilter}
+
+        />
       </div>
     )
   }
-}
 
+}
 
 export default App
