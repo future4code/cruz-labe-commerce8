@@ -10,29 +10,32 @@ const HeaderProdutos = styled.div`
   align-items:center;
   height:100px;
   padding: 0px 180px;
-  box-sizing:border-box;
+  
   `
-
+const DivImagens = styled.div`
+display:flex;
+flex-direction:column;
+`
 const ProdutosImg = styled.img`
   width: 150px;
-  height: 150px;
-  box-sizing:border-box;
-  
+  height: 150px; 
 `
 const ProdutoIndex = styled.div`
  background-color:lightsalmon;
-  width:300px;
-  text-align:center;
+  width:1150px;
   padding:8px;
-  box-sizing:border-box;
-  height:250px;
+  display:flex;
+  flex-direction:row;
+  justify-content:space-around;
+  height:180px;
+  align-items:center;
 `
 const ProdutosFlex = styled.div`
   padding:10px;
   background-color:red;
-  height:280px;
-  box-sizing:border-box;
-   
+  height:200px;
+  
+  
 `
 
 class ProdutosCard extends React.Component  {
@@ -105,6 +108,7 @@ class ProdutosCard extends React.Component  {
        produto = this.arrayComOsprodutos.map((index)=>{
 
              return(
+              <DivImagens>
             <ProdutosFlex>
                
                <ProdutoIndex>
@@ -115,7 +119,7 @@ class ProdutosCard extends React.Component  {
                </ProdutoIndex>
                
                </ProdutosFlex>
-            
+               </DivImagens>
            
         
            
@@ -130,7 +134,7 @@ class ProdutosCard extends React.Component  {
         produtoInverso = this.arrayInverso.map((index)=>{
         
           return(
-          <div>
+     <DivImagens>
          <ProdutosFlex>
             
             <ProdutoIndex>
@@ -141,8 +145,8 @@ class ProdutosCard extends React.Component  {
             </ProdutoIndex>
             
             </ProdutosFlex>
-     
-          </div>
+            </DivImagens>
+    
            )
          }
         
