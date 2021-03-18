@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
-import Produtos from './components/produtos/produtos'
-import ProdutosCard from './components/produtos/ProdutosCard'
+import ProdutosCard from './components/Produtos/ProdutosCard'
 import Filtros from './components/Filtros'
+
 
 const Centralizados = styled.div`
   width: 1200px; 
@@ -37,17 +37,23 @@ class App extends React.Component  {
   return (
     <div className="App">
       <Centralizados>
-        <Produtos></Produtos>
-
-      <div className = "Produtos-index">
+       
+    
         <ProdutosCard></ProdutosCard>
-
+       
+       
+        </Centralizados>
      </div>
+
+
+     
+
 
       </Centralizados>
 
       <Filtros></Filtros>
   </div>
+
  
   );
 

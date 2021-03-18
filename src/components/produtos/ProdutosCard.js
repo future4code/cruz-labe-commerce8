@@ -1,8 +1,21 @@
 import React from 'react';
 import styled from 'styled-components'
-import App from '../../App'
-import Produtos from './produtos';
 
+
+import App from '../../App'
+
+
+
+const HeaderProdutos = styled.div`
+  display: flex;
+  flex-direction:row;
+  background-color:lightsalmon;
+  justify-content: space-between;
+  align-items:center;
+  height:100px;
+  padding: 0px 180px;
+  box-sizing:border-box;
+  `
 const ProdutosPost = styled.div `
   
   background-color:lightgrey;
@@ -45,16 +58,49 @@ const ProdutosFlex = styled.div`
 `
 
 class ProdutosCard extends React.Component  {
+    state = {
+        ordenacao: ""
+    }
 
+    ordem = (event) => {
+        this.setState({ordenacao:event.target.value})
+        console.log(this.state.ordenacao)
+    }
     render(){
-    
-    
+       const RenderizarDecrescente = () => {
+            const arrayComOsprodutos = [{
+                nome: "Produto 1" 
+                
+            }]
+       }
     return (
-             
+        <div className = "Produtos-index">
+        <HeaderProdutos>
+      
+        <p>Quantidade de produtos: 4</p> 
+     
+   
+        <p>Ordenação:
+         
+          <select onChange = {this.ordem}>
+            <option value = "Decrescente">
+                Crescente
+            </option>
+
+              <option value = "crescente">
+                Decrescente
+              </option>
+
+          </select>
+       
+       </p>  
+       </HeaderProdutos>
+
   <ProdutosPost>
     <ProdutosFlex>
       <ProdutoIndex>
           <div className = "Produto-1">
+              
             <ProdutosImg src = "https://media.istockphoto.com/photos/car-toy-colorful-watercolor-style-crash-accident-isolated-on-white-picture-id906812576?s=612x612"></ProdutosImg> 
           </div>
             
@@ -64,7 +110,7 @@ class ProdutosCard extends React.Component  {
       </ProdutoIndex>
 
       <ProdutoIndex>
-        <div className = "Produto-1">
+        <div className = "Produto-2">
           <ProdutosImg src = "https://cdn.pixabay.com/photo/2016/09/10/15/45/marbles-1659398_960_720.jpg"></ProdutosImg> 
           </div>
        
@@ -77,7 +123,7 @@ class ProdutosCard extends React.Component  {
         
     <ProdutosFlex>
       <ProdutoIndex>
-        <div className = "Produto-1">
+        <div className = "Produto-3">
            <ProdutosImg src = "https://cdn.pixabay.com/photo/2015/03/26/10/34/tricycle-691587_960_720.jpg"></ProdutosImg> 
           </div>
        
@@ -87,7 +133,7 @@ class ProdutosCard extends React.Component  {
       </ProdutoIndex>
 
       <ProdutoIndex>
-        <div className = "Produto-1">
+        <div className = "Produto-4" >
            <ProdutosImg src = "https://cdn.pixabay.com/photo/2018/05/31/15/06/not-hear-3444212_960_720.jpg"></ProdutosImg> 
         </div>
        
@@ -100,7 +146,7 @@ class ProdutosCard extends React.Component  {
                
   </ProdutosPost>
        
-       
+       </div>      
        
     
         );
