@@ -9,7 +9,13 @@ const Centralizados = styled.div`
   height: 100vh;
   margin:auto; 
   `
+const ProdutosImg = styled.img`
+border-radius:25px black;
+width: 250px;
+height: 250px;
+box-sizing:border-box;
 
+`
 class App extends React.Component  {
   
     state = {
@@ -38,21 +44,21 @@ class App extends React.Component  {
     <div className="App">
       <Centralizados>
        
-    
+      
         <ProdutosCard></ProdutosCard>
        
        
         </Centralizados>
-     </div>
+
 
 
      
 
 
-      </Centralizados>
+    
 
       <Filtros></Filtros>
-  </div>
+</div>
 
  
   );

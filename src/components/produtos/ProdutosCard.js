@@ -1,10 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-
-
 import App from '../../App'
-
-
 
 const HeaderProdutos = styled.div`
   display: flex;
@@ -16,45 +12,27 @@ const HeaderProdutos = styled.div`
   padding: 0px 180px;
   box-sizing:border-box;
   `
-const ProdutosPost = styled.div `
-  
-  background-color:lightgrey;
- border:solid 2px;
-  height:100vh;
-  padding:15px;
-  box-sizing:border-box;
- 
-   
-`
-const ProdutosImg = styled.img`
-  border-radius:25px black;
-  width: 250px;
-  height: 250px;
-  box-sizing:border-box;
-  
-`
 
+const ProdutosImg = styled.img`
+  width: 150px;
+  height: 150px;
+  box-sizing:border-box;
+  
+`
 const ProdutoIndex = styled.div`
  background-color:lightsalmon;
- 
-
-  width:400px;
+  width:300px;
   text-align:center;
-  padding:15px;
-  margin-left:20px;
+  padding:8px;
   box-sizing:border-box;
-
+  height:250px;
 `
 const ProdutosFlex = styled.div`
-  border-radius:25px black;
-
-  display:flex;
-  padding:15px;
-  text-align:center;
-  justify-content:center;
+  padding:10px;
+  background-color:red;
+  height:280px;
   box-sizing:border-box;
-  
-  
+   
 `
 
 class ProdutosCard extends React.Component  {
@@ -64,20 +42,125 @@ class ProdutosCard extends React.Component  {
 
     ordem = (event) => {
         this.setState({ordenacao:event.target.value})
-        console.log(this.state.ordenacao)
+       
     }
+   
+      arrayComOsprodutos =  [{
+              nome: "Produto 3", 
+              valor:20+"R$",
+              imagem:"https://media.istockphoto.com/photos/car-toy-colorful-watercolor-style-crash-accident-isolated-on-white-picture-id906812576?s=612x612",
+              botao: <button>Adicionar ao carrinho</button>
+            },
+            {
+              nome: "Produto 2", 
+              valor:15+"R$",
+              imagem:"https://cdn.pixabay.com/photo/2016/09/10/15/45/marbles-1659398_960_720.jpg",
+              botao: <button>Adicionar ao carrinho</button>
+            },
+            {
+              nome: "Produto 1", 
+              valor:10+"R$",
+              imagem:"https://cdn.pixabay.com/photo/2015/03/26/10/34/tricycle-691587_960_720.jpg",
+              botao: <button>Adicionar ao carrinho</button>
+            },
+           
+          ]
+   
+     
+       arrayInverso = [{
+        
+          nome: "Produto 1", 
+          valor:10+"R$",
+          imagem:"https://cdn.pixabay.com/photo/2015/03/26/10/34/tricycle-691587_960_720.jpg",
+          botao: <button>Adicionar ao carrinho</button>
+        },
+       
+        {
+          nome: "Produto 2", 
+          valor:15+"R$",
+          imagem:"https://cdn.pixabay.com/photo/2016/09/10/15/45/marbles-1659398_960_720.jpg",
+          botao: <button>Adicionar ao carrinho</button>
+        },
+       
+       
+       
+       {
+        nome: "Produto 3", 
+        valor:20+"R$",
+        imagem:"https://media.istockphoto.com/photos/car-toy-colorful-watercolor-style-crash-accident-isolated-on-white-picture-id906812576?s=612x612",
+        botao: <button>Adicionar ao carrinho</button>
+      },
+         
+    ]
+     
     render(){
-       const RenderizarDecrescente = () => {
-            const arrayComOsprodutos = [{
-                nome: "Produto 1" 
-                
-            }]
-       }
+   
+ console.log(this.arrayInverso)
+        let produtoInverso
+        let produto 
+       
+        const renderizarTelaCorreta = () => {
+        
+      if (this.state.ordenacao === "crescente") {
+       produto = this.arrayComOsprodutos.map((index)=>{
+
+             return(
+            <ProdutosFlex>
+               
+               <ProdutoIndex>
+                  <ProdutosImg src = {index.imagem}></ProdutosImg>    
+              <p> {index.nome}</p> 
+              <p>{index.valor}</p> 
+              <p>{index.botao}</p> 
+               </ProdutoIndex>
+               
+               </ProdutosFlex>
+            
+           
+        
+           
+              )
+            })
+       
+            return(
+
+          <div>{produto}</div>
+        )
+      }else {
+        produtoInverso = this.arrayInverso.map((index)=>{
+        
+          return(
+          <div>
+         <ProdutosFlex>
+            
+            <ProdutoIndex>
+               <ProdutosImg src = {index.imagem}></ProdutosImg>    
+           <p> {index.nome}</p> 
+           <p>{index.valor}</p> 
+           <p>{index.botao}</p> 
+            </ProdutoIndex>
+            
+            </ProdutosFlex>
+     
+          </div>
+           )
+         }
+        
+        )
+    
+         return(
+
+       <div>{produtoInverso}</div>
+     )
+      }
+           
+      }
+   
     return (
         <div className = "Produtos-index">
         <HeaderProdutos>
       
-        <p>Quantidade de produtos: 4</p> 
+        <p>Quantidade de produtos: 3</p> 
      
    
         <p>Ordenação:
@@ -95,60 +178,12 @@ class ProdutosCard extends React.Component  {
        
        </p>  
        </HeaderProdutos>
-
-  <ProdutosPost>
-    <ProdutosFlex>
-      <ProdutoIndex>
-          <div className = "Produto-1">
-              
-            <ProdutosImg src = "https://media.istockphoto.com/photos/car-toy-colorful-watercolor-style-crash-accident-isolated-on-white-picture-id906812576?s=612x612"></ProdutosImg> 
-          </div>
-            
-            <p>Produto 1</p>
-            <p> 10R$</p>
-            <button>Adicionar ao carrinho</button>
-      </ProdutoIndex>
-
-      <ProdutoIndex>
-        <div className = "Produto-2">
-          <ProdutosImg src = "https://cdn.pixabay.com/photo/2016/09/10/15/45/marbles-1659398_960_720.jpg"></ProdutosImg> 
-          </div>
-       
-        <p>Produto 2</p>
-        <p> 15R$</p>
-        <button>Adicionar ao carrinho</button>
-        </ProdutoIndex>
-
-    </ProdutosFlex>
         
-    <ProdutosFlex>
-      <ProdutoIndex>
-        <div className = "Produto-3">
-           <ProdutosImg src = "https://cdn.pixabay.com/photo/2015/03/26/10/34/tricycle-691587_960_720.jpg"></ProdutosImg> 
-          </div>
-       
-        <p>Produto 3</p>
-        <p> 20R$</p>
-        <button>Adicionar ao carrinho</button>
-      </ProdutoIndex>
-
-      <ProdutoIndex>
-        <div className = "Produto-4" >
-           <ProdutosImg src = "https://cdn.pixabay.com/photo/2018/05/31/15/06/not-hear-3444212_960_720.jpg"></ProdutosImg> 
-        </div>
-       
-        <p>Produto 4</p>
-        <p> 25R$</p>
-       
-        <button>Adicionar ao carrinho</button>
-      </ProdutoIndex>
-    </ProdutosFlex>
-               
-  </ProdutosPost>
-       
+      
+       <div>{renderizarTelaCorreta()}</div> 
+   
        </div>      
-       
-    
+          
         );
 
 }
