@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import App from '../../App'
-import Produtos from './Produtos';
+import Produtos from './produtos';
 
 const ProdutosPost = styled.div `
   
