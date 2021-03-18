@@ -7,6 +7,19 @@ import Filtros from './components/Filtros'
 
 // const Carrinho = styled.div``
 
+const Centralizados = styled.div`
+  width: 1200px; 
+  height: 100vh;
+  margin:auto; 
+  `
+const ProdutosImg = styled.img`
+border-radius:25px black;
+width: 250px;
+height: 250px;
+box-sizing:border-box;
+
+`
+
 const produtos = [
   {
     id: 3,
@@ -79,7 +92,6 @@ class App extends React.Component {
       const novoProdutoNoCarrinho = [...this.state.produtosNoCarrinho, {...produtoAdicionar, quantidade: 1}]
 
       this.setState({produtosNoCarrinho: novoProdutoNoCarrinho})
-
     }
   }
 
@@ -96,7 +108,6 @@ class App extends React.Component {
 
     this.setState({produtosNoCarrinho: novoProdutoNoCarrinho})
   }
-
 
   render() {
 
