@@ -30,20 +30,17 @@ export class Carrinho extends React.Component {
 
   render() {
 
+    const imprimir = this.props.carrinho.map((item, index) => {
+      //setProdutos([...produto, item]);
+      return <ItemDoCarrinho item={item.name}  key={index} />
+  })
+
     return (
 
       <CarrinhoConteiner>
         <Titulo>Carrinho:</Titulo>
-        <CarrinhoLista>
-            {this.props.produtosNoCarrinho.map((produto) => {
-                return (
-                <ItemDoCarrinho
-                cartItem={produto} 
-                RemoveProdutoDoCarrinho={this.props.RemoveProdutoDoCarrinho}
-                />)
-        })}
-            </CarrinhoLista>
-        <p>Valor total: R${this.getValorTotal()},00</p>    
+        {imprimir}
+          
       </CarrinhoConteiner>
 
     )

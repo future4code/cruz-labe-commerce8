@@ -14,7 +14,7 @@ const InputContainer = styled.label`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 `
 const Centralizados = styled.div`
   width: 1200px; 

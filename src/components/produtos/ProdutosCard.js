@@ -1,6 +1,13 @@
 import React from 'react';
 import styled from 'styled-components'
-import App from '../../App'
+import ShowProdutos from '../ShowProdutos';
+
+const DivContainer = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    
+`
+
 
 const HeaderProdutos = styled.div`
   display: flex;
@@ -10,186 +17,81 @@ const HeaderProdutos = styled.div`
   align-items:center;
   height:100px;
   padding: 0px 180px;
-  
+  box-sizing:border-box;
   `
-const DivImagens = styled.div`
-display:flex;
-flex-direction:column;
-`
+
 const ProdutosImg = styled.img`
   width: 150px;
-  height: 150px; 
+  height: 150px;
+  box-sizing:border-box;
+  
 `
 const ProdutoIndex = styled.div`
  background-color:lightsalmon;
-  width:1150px;
+  width:300px;
+  text-align:center;
   padding:8px;
-  display:flex;
-  flex-direction:row;
-  justify-content:space-around;
-  height:180px;
-  align-items:center;
+  box-sizing:border-box;
+  height:250px;
 `
 const ProdutosFlex = styled.div`
   padding:10px;
   background-color:red;
-  height:200px;
-  
-  
+  height:280px;
+  box-sizing:border-box;
+   
 `
 
 class ProdutosCard extends React.Component  {
-    state = {
-        ordenacao: ""
+    
+
+    filtraProdutos = () => {
+      let produtosFiltrado = [...this.props.produtos]
+      
+      if (this.props.filtroMin) {
+        
+        produtosFiltrado = produtosFiltrado.filter((produto) =>{
+          return produto.value >= this.props.filtroMin
+        })
+      }
+
+      if (this.props.filtroMax) {
+        produtosFiltrado = produtosFiltrado.filter((produto) =>{
+          return produto.value < this.props.filtroMax
+      })
+    }
+    
+      if (this.props.filtroNome) {
+        produtosFiltrado = produtosFiltrado.filter((produto) =>{
+          return produto.name.toLowerCase().indexOf(this.props.filtroNome) > -1
+      })
     }
 
-    ordem = (event) => {
-        this.setState({ordenacao:event.target.value})
-       
+      return produtosFiltrado
+      
     }
-   
-      arrayComOsprodutos =  [{
-              nome: "Produto 3", 
-              valor:20+"R$",
-              imagem:"https://media.istockphoto.com/photos/car-toy-colorful-watercolor-style-crash-accident-isolated-on-white-picture-id906812576?s=612x612",
-              botao: <button>Adicionar ao carrinho</button>
-            },
-            {
-              nome: "Produto 2", 
-              valor:15+"R$",
-              imagem:"https://cdn.pixabay.com/photo/2016/09/10/15/45/marbles-1659398_960_720.jpg",
-              botao: <button>Adicionar ao carrinho</button>
-            },
-            {
-              nome: "Produto 1", 
-              valor:10+"R$",
-              imagem:"https://cdn.pixabay.com/photo/2015/03/26/10/34/tricycle-691587_960_720.jpg",
-              botao: <button>Adicionar ao carrinho</button>
-            },
-           
-          ]
-   
-     
-       arrayInverso = [{
-        
-          nome: "Produto 1", 
-          valor:10+"R$",
-          imagem:"https://cdn.pixabay.com/photo/2015/03/26/10/34/tricycle-691587_960_720.jpg",
-          botao: <button>Adicionar ao carrinho</button>
-        },
-       
-        {
-          nome: "Produto 2", 
-          valor:15+"R$",
-          imagem:"https://cdn.pixabay.com/photo/2016/09/10/15/45/marbles-1659398_960_720.jpg",
-          botao: <button>Adicionar ao carrinho</button>
-        },
-       
-       
-       
-       {
-        nome: "Produto 3", 
-        valor:20+"R$",
-        imagem:"https://media.istockphoto.com/photos/car-toy-colorful-watercolor-style-crash-accident-isolated-on-white-picture-id906812576?s=612x612",
-        botao: <button>Adicionar ao carrinho</button>
-      },
-         
-    ]
-     
+
+
+
+    listaProdutos = () => {
+      const produtosFiltrados = this.filtraProdutos()
+      
+      return produtosFiltrados.map((produto) => {
+        return <ShowProdutos add={()=>this.props.add(produto)} name={produto.name} value={produto.value} imageUrl={produto.imageUrl} key={produto.id}/>
+    })
+
+    }
+
+    
+
     render(){
    
- console.log(this.arrayInverso)
-        let produtoInverso
-        let produto 
-       
-        const renderizarTelaCorreta = () => {
-        
-      if (this.state.ordenacao === "crescente") {
-       produto = this.arrayComOsprodutos.map((index)=>{
 
-             return(
-              <DivImagens>
-            <ProdutosFlex>
-               
-               <ProdutoIndex>
-                  <ProdutosImg src = {index.imagem}></ProdutosImg>    
-              <p> {index.nome}</p> 
-              <p>{index.valor}</p> 
-              <p>{index.botao}</p> 
-               </ProdutoIndex>
-               
-               </ProdutosFlex>
-               </DivImagens>
-           
-        
-           
-              )
-            })
-       
-            return(
-
-          <div>{produto}</div>
-        )
-      }else {
-        produtoInverso = this.arrayInverso.map((index)=>{
-        
-          return(
-     <DivImagens>
-         <ProdutosFlex>
-            
-            <ProdutoIndex>
-               <ProdutosImg src = {index.imagem}></ProdutosImg>    
-           <p> {index.nome}</p> 
-           <p>{index.valor}</p> 
-           <p>{index.botao}</p> 
-            </ProdutoIndex>
-            
-            </ProdutosFlex>
-            </DivImagens>
-    
-           )
-         }
-        
-        )
-    
-         return(
-
-       <div>{produtoInverso}</div>
-     )
-      }
-           
-      }
-   
     return (
-        <div className = "Produtos-index">
-        <HeaderProdutos>
-      
-        <p>Quantidade de produtos: 3</p> 
-     
-   
-        <p>Ordenação:
-         
-          <select onChange = {this.ordem}>
-            <option value = "Decrescente">
-                Crescente
-            </option>
-
-              <option value = "crescente">
-                Decrescente
-              </option>
-
-          </select>
-       
-       </p>  
-       </HeaderProdutos>
-        
-      
-       <div>{renderizarTelaCorreta()}</div> 
-   
-       </div>      
-          
-        );
-
+        <DivContainer>
+          {this.listaProdutos()}  
+        </DivContainer>
+    )   
 }
 }
 
